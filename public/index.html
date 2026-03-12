@@ -64,6 +64,21 @@
       cursor: pointer;
     }
     .card:hover { transform: translateY(-3px); border-color: #36507d; }
+    .card.featured { border-color: #82f7d3; box-shadow: 0 0 0 1px rgba(130,247,211,.45), var(--shadow); }
+    .thumb.featured-thumb { background: linear-gradient(135deg, rgba(130,247,211,.35), rgba(110,168,254,.35)); position: relative; }
+    .featured-badge {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: .72rem;
+      font-weight: 700;
+      background: rgba(9,18,36,.88);
+      border: 1px solid #82f7d3;
+      color: #bafbe6;
+      border-radius: 999px;
+      padding: 4px 8px;
+      letter-spacing: .04em;
+    }
     .thumb {
       height: 120px;
       background: linear-gradient(135deg, rgba(110,168,254,.35), rgba(130,247,211,.25));
@@ -164,40 +179,47 @@
   <script>
     const products = [
       {
-        title: "Travel Agency Automation Playbook",
-        shortDescription: "Automate lead capture across WhatsApp, Instagram, Facebook, and phone inquiries. Build a CRM for partner properties from inbound emails and auto-send itinerary options based on traveler preferences. Great for agencies scaling personalized service without adding staff.",
-        price: "$39",
-        tags: "travel agency automation, ai operations, whatsapp leads, itinerary automation, crm setup",
+        featured: true,
+        title: "AI-Powered Travel Agency Lead Machine — Complete Automation Playbook",
+        shortDescription: "Turn your travel agency into a lead-generating machine using AI + automation. From WhatsApp lead capture to automated itineraries — built for Indian travel agencies but adaptable worldwide.",
+        price: "$29 (Suggested) · PWYW min $14",
+        tags: "travel agency, lead generation, AI automation, WhatsApp CRM, Gujarat, India, consulting",
         covers: [
-          "Unified lead intake from WhatsApp, Instagram DM, Facebook, and call logs",
-          "Partner property CRM auto-populated from supplier emails",
-          "Guest preference form to capture budget, dates, interests, and travel style",
-          "Auto-generated itinerary drafts with package tiers",
-          "Follow-up automation for quote nudges and abandoned inquiries",
-          "Team handoff workflow for high-intent or VIP travelers",
-          "Reporting dashboard for conversion by source and destination"
+          "Google Business Profile optimization for local travel searches",
+          "WhatsApp Business setup with catalog, auto-replies & broadcast lists for seasonal offers",
+          "Facebook & Instagram hyper-local ad campaigns (Meta Advantage+ AI targeting)",
+          "Google Performance Max campaigns across Search, YouTube, Gmail",
+          "Local partnership playbook (wedding planners → honeymoon, corporate HR → MICE, schools → edu tours)",
+          "Instagram Reels content strategy (package of the week, destination showcases)",
+          "AI content engine: generate 30 days of social posts in one sitting (English + regional language)",
+          "CRM pipeline setup: Inquiry → Qualified → Proposal Sent → Follow-up → Booked → Post-trip Review",
+          "WhatsApp CRM tools: WATI, Interakt, AiSensy comparison + setup guide",
+          "Lead capture forms linked to Google Sheets/Notion",
+          "Remote consulting structure (for consultants working across time zones)",
+          "Consulting pricing templates: retainer (CAD $500-1,500/mo), project-based, per-lead models"
         ],
-        tools: "Make, Zapier, Google Sheets, Airtable, WhatsApp Business API, Gmail parser, Typeform, Notion, ChatGPT",
+        tools: "ChatGPT/Claude, Meta Advantage+, Google Performance Max, WhatsApp Business, WATI/Interakt/AiSensy, HubSpot Free/Zoho CRM, Google Workspace, Canva, Loom, Notion/Trello",
         socialPrompts: {
-          igReel: "Show a messy inbox turning into an auto-generated travel itinerary in 20 seconds.",
-          igStory: "Create a before/after Story of manual lead chaos vs automated booking flow.",
-          fbReel: "Demonstrate how one travel inquiry becomes a full itinerary with zero copy-paste.",
-          fbStory: "Show three quick steps from WhatsApp lead to confirmed trip proposal.",
-          ytShort: "Record a fast workflow where AI converts traveler preferences into itinerary options."
+          igReel: "30-sec before/after: messy WhatsApp leads vs clean automated CRM pipeline for a travel agency",
+          igStory: "Poll: How do you track travel leads? A) WhatsApp chaos B) Spreadsheet C) Proper CRM — swipe up for the playbook",
+          fbReel: "How one travel agency in India went from 0 to 50 leads/month using AI + WhatsApp automation",
+          fbStory: "3 free tools every travel agent needs for lead gen — quick carousel with CTA",
+          ytShort: "I automated a travel agency's entire lead pipeline from Canada — here's the exact stack"
         },
         marketing: {
-          x: "Travel agencies lose leads in DMs and inboxes every day. This Automation Playbook shows how to capture WhatsApp/IG/FB/phone leads, build a partner-property CRM from emails, and auto-send personalized itineraries. Productized ops = faster closes.",
-          redditTitle: "I built a travel agency automation system that replies with itinerary drafts automatically",
-          redditBody: "This playbook shows exactly how to unify leads from social + phone and auto-build trip proposals from traveler preferences. If your agency is buried in repetitive admin, this can save hours weekly.",
-          discord: "✈️ New: Travel Agency Automation Playbook\nCapture leads from WhatsApp/IG/FB/phone in one system.\nAuto-build itinerary drafts + partner-property CRM from emails.\nShip faster quotes, close more trips."
+          x: "Built an AI-powered lead gen system for a travel agency remotely. WhatsApp CRM + Meta ads + AI content = 50+ leads/month. Here's the playbook → LINK",
+          redditTitle: "How I set up AI-powered lead generation for a travel agency (remotely from Canada)",
+          redditBody: "My friend runs a travel agency in India. I built their entire lead pipeline using WhatsApp Business, Meta AI ads, and ChatGPT for content. Sharing the full playbook with templates.",
+          discord: "🚀 New playbook dropped: AI-Powered Travel Agency Lead Machine. Full automation stack — WhatsApp CRM, Meta Advantage+ ads, AI content in multiple languages, CRM pipeline templates. Built from a real consulting engagement. Grab it → LINK"
         },
         media: {
-          gumroad: "Modern travel consultant dashboard with chat leads, itinerary cards, and clean teal-blue UI glow.",
-          youtube: "Bold thumbnail of a travel map and AI workflow arrows from DMs to itinerary output.",
-          instagram: "Sleek social graphic showing " + '"Lead to Itinerary in Minutes"' + " with travel icons and dark gradient.",
-          facebook: "Professional banner with agent laptop, chat notifications, and automated trip pipeline visual.",
-          x: "Minimal dark card featuring a travel CRM flowchart and headline about automated itineraries."
-        }
+          gumroad: "Flat illustration of a travel agency desk with WhatsApp chat bubbles, airplane icons, and AI circuit patterns, blue and orange palette",
+          youtube: "Split screen: left side messy WhatsApp chats, right side clean CRM dashboard with lead count, bold text 'AUTOMATED'",
+          instagram: "Minimalist carousel cover with airplane icon + 'Lead Machine' text on gradient blue-to-teal background",
+          facebook: "Travel agency storefront with floating AI icons and WhatsApp logo, professional warm lighting",
+          x: "Clean dashboard mockup showing travel leads pipeline with '50+ leads/month' stat overlay"
+        },
+        templateNote: "💡 This playbook is built from a real consulting engagement. Replace city/region names to adapt for your market."
       },
       {
         title: "Real Estate Agent Follow-Up Automation",
@@ -539,9 +561,9 @@
 
     products.forEach((p, i) => {
       const card = document.createElement('article');
-      card.className = 'card';
+      card.className = p.featured ? 'card featured' : 'card';
       card.innerHTML = `
-        <div class="thumb">Playbook #${i + 1}</div>
+        <div class="thumb ${p.featured ? 'featured-thumb' : ''}">Playbook #${i + 1}${p.featured ? '<span class="featured-badge">Featured</span>' : ''}</div>
         <div class="card-body">
           <h3>${p.title}</h3>
           <p class="small">${p.shortDescription.slice(0, 130)}...</p>
@@ -606,6 +628,8 @@
             <li><strong>X/Twitter Card:</strong> ${p.media.x}</li>
           </ul>
         </div>
+
+        ${p.templateNote ? `<p class="small" style="margin-top:14px;">${p.templateNote}</p>` : ''}
       `;
       modal.classList.add('show');
       modal.setAttribute('aria-hidden', 'false');
