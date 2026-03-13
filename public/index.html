@@ -241,6 +241,33 @@
       height: auto !important;
     }
 
+    
+
+    .playbook-btn {
+      margin-top: 14px;
+      border: 1px solid var(--brand);
+      background: var(--brand-soft);
+      color: #0f3f75;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .playbook-reader {
+      margin-top: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fff;
+      max-height: 58vh;
+      overflow: auto;
+    }
+
+    .playbook-reader h1, .playbook-reader h2, .playbook-reader h3 {
+      color: #17395f;
+    }
+
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
       .menu-toggle { display: inline-flex; }
@@ -249,6 +276,7 @@
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -280,6 +308,7 @@
         featured: true,
         title: "Travel Agency Lead Machine",
         short: "Featured: AI-powered capture-to-booking automation for travel leads.",
+        playbook: "01-travel-agency.md",
         description: "Turn scattered inquiries from WhatsApp/Instagram/Facebook into a structured, automated travel sales pipeline with AI-generated itineraries and systematic follow-ups.",
         price: "$29 (Suggested)",
         tools: "WATI/Interakt, CRM, AI itinerary engine, WhatsApp/email automation",
@@ -319,6 +348,7 @@ CL --> UC8((Leave review))`
       {
         title: "Real Estate Follow-ups",
         short: "Automated inquiry response, viewing scheduling, and nurture sequences.",
+        playbook: "02-real-estate.md",
         description: "Ensure every property lead gets a rapid response, scheduled viewing, and drip follow-up through offer and closing stages.",
         price: "$35",
         tools: "Website forms, CRM, email automation, calendar workflows",
@@ -351,6 +381,7 @@ BY --> B3((Make offer))`
       {
         title: "Fitness Coach Onboarding",
         short: "From signup to AI-assisted workout plans and weekly check-ins.",
+        playbook: "03-fitness-coach.md",
         description: "Automate intake, plan creation, delivery, and progress tracking so coaches spend more time coaching and less time on admin.",
         price: "$29",
         tools: "Intake forms, AI plan generation, coaching app assignment",
@@ -385,6 +416,7 @@ CL --> U3((Log workouts))`
       {
         title: "Salon/Spa Booking",
         short: "Booking confirmations, reminders, reviews, and rebooking automation.",
+        playbook: "04-salon-spa.md",
         description: "Reduce no-shows and improve repeat bookings with automatic communication before and after each appointment.",
         price: "$27",
         tools: "Booking system, SMS/WhatsApp reminders, review automation",
@@ -416,6 +448,7 @@ CL --> C3((Leave review))`
       {
         title: "Restaurant Review Management",
         short: "Automate review capture, sentiment routing, and owner alerts.",
+        playbook: "05-restaurant-reviews.md",
         description: "Capture feedback at scale, push positive sentiment publicly, and alert owners immediately for negative experiences.",
         price: "$25",
         tools: "QR prompts, AI sentiment, owner alerts, monthly reporting",
@@ -448,6 +481,7 @@ DI --> D2((Receive thank you))`
       {
         title: "E-commerce Returns",
         short: "Streamlined returns with auto-classification, labels, refunds, and surveys.",
+        playbook: "06-ecommerce-returns.md",
         description: "Cut support load and improve customer trust with transparent automated returns from request to refund.",
         price: "$33",
         tools: "Return forms, classification logic, shipping labels, refund workflows",
@@ -479,6 +513,7 @@ CU --> C3((Get refund))`
       {
         title: "Wedding/Event Planner",
         short: "Vendor matching, timeline generation, and event coordination automation.",
+        playbook: "07-wedding-event-planner.md",
         description: "Automate planning workflows from inquiry to day-of checklist so planners can deliver consistently under tight deadlines.",
         price: "$37",
         tools: "Budget forms, AI vendor matching, timeline/task system",
@@ -511,6 +546,7 @@ CP --> C3((Track progress))`
       {
         title: "Property Management",
         short: "Maintenance request triage, contractor assignment, and tenant updates.",
+        playbook: "08-property-management.md",
         description: "Automate property maintenance operations for faster issue resolution and better tenant communication.",
         price: "$36",
         tools: "Maintenance forms, AI categorization, contractor dispatch",
@@ -543,6 +579,7 @@ TN --> T3((Confirm fix))`
       {
         title: "Tutoring Center",
         short: "Inquiry-to-tutor matching with scheduling and parent progress updates.",
+        playbook: "09-tutoring-center.md",
         description: "Automate student onboarding, tutor allocation, and progress reporting to improve outcomes while reducing admin work.",
         price: "$28",
         tools: "Assessment forms, AI tutor matching, schedule/report automation",
@@ -575,6 +612,7 @@ PR --> P3((Communicate with tutor))`
       {
         title: "Dental Clinic",
         short: "Patient intake, reminders, post-care instructions, and recall automation.",
+        playbook: "10-dental-clinic.md",
         description: "Improve chair utilization and patient communication with automated workflows before and after each appointment.",
         price: "$34",
         tools: "Online booking, digital forms, AI post-care content, recall reminders",
@@ -661,6 +699,9 @@ PT --> P3((Receive care instructions))`
         <h3>What this playbook covers</h3>
         <ul>${p.covers.map(item => `<li>${item}</li>`).join('')}</ul>
 
+        <button class="playbook-btn" id="readPlaybookBtn" type="button">📖 Read Full Playbook</button>
+        <div id="playbookReader" class="playbook-reader" hidden></div>
+
         <h3>Diagrams</h3>
         <details>
           <summary>Flow Diagram</summary>
@@ -679,6 +720,27 @@ PT --> P3((Receive care instructions))`
       `;
 
       mermaid.run({ nodes: detail.querySelectorAll('.mermaid') });
+
+      const btn = document.getElementById('readPlaybookBtn');
+      const reader = document.getElementById('playbookReader');
+      btn.addEventListener('click', async () => {
+        const p = products[selectedIndex];
+        try {
+          btn.disabled = true;
+          btn.textContent = 'Loading playbook...';
+          const res = await fetch(`/playbooks/${p.playbook}`);
+          const md = await res.text();
+          reader.innerHTML = marked.parse(md);
+          reader.hidden = false;
+          btn.textContent = '📖 Read Full Playbook';
+        } catch (e) {
+          reader.hidden = false;
+          reader.innerHTML = '<p>Could not load playbook. Please try again.</p>';
+          btn.textContent = '📖 Read Full Playbook';
+        } finally {
+          btn.disabled = false;
+        }
+      });
     }
 
     menuToggle.addEventListener('click', () => sidebar.classList.toggle('open'));

@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'../public')));
+app.use('/playbooks', express.static(path.join(__dirname, '../playbooks')));
 
 app.get('/health', (req,res)=>res.json({ok:true}));
 
