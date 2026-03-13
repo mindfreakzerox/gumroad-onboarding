@@ -6,645 +6,676 @@
   <title>AI Automation Playbook Catalog | Gumroad Ideas</title>
   <style>
     :root {
-      --bg: #0b1220;
-      --bg-soft: #121a2b;
-      --card: #16233a;
-      --muted: #9eb0cf;
-      --text: #eaf1ff;
-      --brand: #6ea8fe;
-      --brand-2: #82f7d3;
-      --border: #253656;
-      --price: #ffe08a;
-      --ok: #9cf6c8;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-soft: #f8fbff;
+      --text: #112033;
+      --muted: #5d6f86;
+      --border: #dbe5f0;
+      --brand: #2b7de9;
+      --brand-soft: #e8f2ff;
+      --teal: #10b7a6;
+      --shadow: 0 8px 28px rgba(19, 44, 77, 0.08);
+      --radius: 14px;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(circle at 20% 0%, #15233f 0%, var(--bg) 45%, #070b14 100%);
+      background: linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.55;
     }
-    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
-    .hero {
-      background: linear-gradient(120deg, rgba(110,168,254,.18), rgba(130,247,211,.10));
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      margin-bottom: 24px;
-    }
-    h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 2.8vw, 2.8rem); }
-    .subtitle { margin: 0; color: var(--muted); max-width: 840px; }
-    .kpis { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
-    .chip {
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: .9rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 16px;
-    }
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)), var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      min-height: 280px;
-      transition: transform .18s ease, border-color .18s ease;
-      cursor: pointer;
-    }
-    .card:hover { transform: translateY(-3px); border-color: #36507d; }
-    .card.featured { border-color: #82f7d3; box-shadow: 0 0 0 1px rgba(130,247,211,.45), var(--shadow); }
-    .thumb.featured-thumb { background: linear-gradient(135deg, rgba(130,247,211,.35), rgba(110,168,254,.35)); position: relative; }
-    .featured-badge {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      font-size: .72rem;
-      font-weight: 700;
-      background: rgba(9,18,36,.88);
-      border: 1px solid #82f7d3;
-      color: #bafbe6;
-      border-radius: 999px;
-      padding: 4px 8px;
-      letter-spacing: .04em;
-    }
-    .thumb {
-      height: 120px;
-      background: linear-gradient(135deg, rgba(110,168,254,.35), rgba(130,247,211,.25));
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-size: .85rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      border-bottom: 1px solid var(--border);
-    }
-    .card-body { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
-    .card h3 { margin: 0; font-size: 1.02rem; }
-    .small { margin: 0; color: var(--muted); font-size: .92rem; }
-    .price { color: var(--price); font-weight: 700; margin-top: auto; }
 
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(3,8,20,.75);
-      display: none;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 18px;
-      overflow: auto;
-      z-index: 30;
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 22px;
     }
-    .modal.show { display: flex; }
-    .sheet {
-      margin-top: 24px;
-      width: min(980px, 100%);
-      background: var(--bg-soft);
+
+    .hero {
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 18px;
       box-shadow: var(--shadow);
-      padding: 22px;
-      position: relative;
+      padding: 24px;
+      margin-bottom: 16px;
     }
-    .close {
-      position: absolute; right: 14px; top: 12px;
-      border: 1px solid var(--border); background: #172743; color: var(--text);
-      border-radius: 10px; padding: 6px 10px; cursor: pointer;
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+      color: #0f2440;
     }
-    h2 { margin: 0 0 6px; }
-    .meta { color: var(--muted); margin-bottom: 14px; }
-    .section { margin-top: 16px; }
-    .section h4 {
-      margin: 0 0 6px;
-      color: var(--brand-2);
-      font-size: .98rem;
-      letter-spacing: .03em;
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 900px;
+    }
+
+    .chips {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: #274665;
+      font-size: .86rem;
+      font-weight: 600;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 16px;
+      min-height: 68vh;
+    }
+
+    .sidebar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .sidebar-head {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      color: #19314e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface-soft);
+      color: #173352;
+      font-size: 1rem;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    .product-list {
+      overflow-y: auto;
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .product-btn {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 12px;
+      padding: 11px;
+      cursor: pointer;
+      transition: all .18s ease;
+    }
+
+    .product-btn:hover {
+      border-color: #b8cde3;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 14px rgba(30, 77, 128, 0.08);
+    }
+
+    .product-btn.active {
+      border-color: var(--brand);
+      background: var(--brand-soft);
+      box-shadow: inset 0 0 0 1px rgba(43,125,233,.08);
+    }
+
+    .product-title {
+      margin: 0;
+      font-weight: 700;
+      font-size: .95rem;
+      color: #102c4a;
+    }
+
+    .product-desc {
+      margin: 4px 0 0;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      margin-top: 7px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #90e3d8;
+      background: #eafffb;
+      color: #0b7f72;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .02em;
       text-transform: uppercase;
     }
-    ul { margin: 8px 0 0 18px; padding: 0; }
-    li { margin-bottom: 6px; }
+
+    .main {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .meta {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
     .two-col {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin: 12px 0;
     }
+
     .panel {
-      background: rgba(255,255,255,.02);
       border: 1px solid var(--border);
       border-radius: 12px;
+      background: var(--surface-soft);
       padding: 12px;
     }
-    .tagline { color: var(--ok); font-weight: 600; }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    @media (max-width: 640px) {
-      .container { padding: 14px; }
-      .hero { padding: 18px; }
-      .sheet { padding: 16px; }
+
+    h2 { margin: 0 0 8px; }
+    h3 { margin: 16px 0 8px; color: #17406c; }
+
+    ul { margin: 8px 0 0 20px; padding: 0; }
+    li { margin-bottom: 6px; }
+
+    details {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 10px 0;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 12px 14px;
+      font-weight: 700;
+      color: #16395d;
+      background: #f7fbff;
+      border-bottom: 1px solid transparent;
+    }
+
+    details[open] summary {
+      border-bottom-color: var(--border);
+    }
+
+    .diagram-wrap { padding: 10px 8px 14px; }
+
+    .mermaid {
+      background: #fff;
+      border-radius: 10px;
+      overflow-x: auto;
+      padding: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .menu-toggle { display: inline-flex; }
+      .sidebar .product-list { display: none; max-height: 44vh; }
+      .sidebar.open .product-list { display: grid; }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
   <div class="container">
     <section class="hero">
       <h1>AI Automation Playbook Catalog</h1>
-      <p class="subtitle">10 high-demand digital product ideas you can package and sell on Gumroad: each includes product listing copy, implementation outline, social content prompts, marketing copy, and media prompts.</p>
-      <div class="kpis">
+      <p class="subtitle">Explore 10 high-demand productized automation playbooks. Pick any idea from the left to view complete details and workflow diagrams on the right.</p>
+      <div class="chips">
         <span class="chip">10 Product Ideas</span>
-        <span class="chip">Small Business Focus</span>
-        <span class="chip">Ready-to-Launch Copy</span>
+        <span class="chip">Sidebar Navigation</span>
+        <span class="chip">Per-product Mermaid Diagrams</span>
       </div>
     </section>
 
-    <section id="catalog" class="grid" aria-label="Product catalog"></section>
-  </div>
-
-  <div id="modal" class="modal" aria-hidden="true">
-    <article class="sheet" role="dialog" aria-modal="true" aria-labelledby="title">
-      <button class="close" id="closeBtn">Close ✕</button>
-      <div id="detail"></div>
-    </article>
+    <section class="layout" aria-label="Catalog with sidebar and detail panel">
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-head">
+          Product Ideas
+          <button id="menuToggle" class="menu-toggle" aria-label="Toggle product list">☰</button>
+        </div>
+        <div id="productList" class="product-list"></div>
+      </aside>
+      <article id="detail" class="main"></article>
+    </section>
   </div>
 
   <script>
     const products = [
       {
         featured: true,
-        title: "AI-Powered Travel Agency Lead Machine — Complete Automation Playbook",
-        shortDescription: "Turn your travel agency into a lead-generating machine using AI + automation. From WhatsApp lead capture to automated itineraries — built for Indian travel agencies but adaptable worldwide.",
-        price: "$29 (Suggested) · PWYW min $14",
-        tags: "travel agency, lead generation, AI automation, WhatsApp CRM, Gujarat, India, consulting",
-        covers: [
-          "Google Business Profile optimization for local travel searches",
-          "WhatsApp Business setup with catalog, auto-replies & broadcast lists for seasonal offers",
-          "Facebook & Instagram hyper-local ad campaigns (Meta Advantage+ AI targeting)",
-          "Google Performance Max campaigns across Search, YouTube, Gmail",
-          "Local partnership playbook (wedding planners → honeymoon, corporate HR → MICE, schools → edu tours)",
-          "Instagram Reels content strategy (package of the week, destination showcases)",
-          "AI content engine: generate 30 days of social posts in one sitting (English + regional language)",
-          "CRM pipeline setup: Inquiry → Qualified → Proposal Sent → Follow-up → Booked → Post-trip Review",
-          "WhatsApp CRM tools: WATI, Interakt, AiSensy comparison + setup guide",
-          "Lead capture forms linked to Google Sheets/Notion",
-          "Remote consulting structure (for consultants working across time zones)",
-          "Consulting pricing templates: retainer (CAD $500-1,500/mo), project-based, per-lead models"
-        ],
-        tools: "ChatGPT/Claude, Meta Advantage+, Google Performance Max, WhatsApp Business, WATI/Interakt/AiSensy, HubSpot Free/Zoho CRM, Google Workspace, Canva, Loom, Notion/Trello",
-        socialPrompts: {
-          igReel: "30-sec before/after: messy WhatsApp leads vs clean automated CRM pipeline for a travel agency",
-          igStory: "Poll: How do you track travel leads? A) WhatsApp chaos B) Spreadsheet C) Proper CRM — swipe up for the playbook",
-          fbReel: "How one travel agency in India went from 0 to 50 leads/month using AI + WhatsApp automation",
-          fbStory: "3 free tools every travel agent needs for lead gen — quick carousel with CTA",
-          ytShort: "I automated a travel agency's entire lead pipeline from Canada — here's the exact stack"
-        },
-        marketing: {
-          x: "Built an AI-powered lead gen system for a travel agency remotely. WhatsApp CRM + Meta ads + AI content = 50+ leads/month. Here's the playbook → LINK",
-          redditTitle: "How I set up AI-powered lead generation for a travel agency (remotely from Canada)",
-          redditBody: "My friend runs a travel agency in India. I built their entire lead pipeline using WhatsApp Business, Meta AI ads, and ChatGPT for content. Sharing the full playbook with templates.",
-          discord: "🚀 New playbook dropped: AI-Powered Travel Agency Lead Machine. Full automation stack — WhatsApp CRM, Meta Advantage+ ads, AI content in multiple languages, CRM pipeline templates. Built from a real consulting engagement. Grab it → LINK"
-        },
-        media: {
-          gumroad: "Flat illustration of a travel agency desk with WhatsApp chat bubbles, airplane icons, and AI circuit patterns, blue and orange palette",
-          youtube: "Split screen: left side messy WhatsApp chats, right side clean CRM dashboard with lead count, bold text 'AUTOMATED'",
-          instagram: "Minimalist carousel cover with airplane icon + 'Lead Machine' text on gradient blue-to-teal background",
-          facebook: "Travel agency storefront with floating AI icons and WhatsApp logo, professional warm lighting",
-          x: "Clean dashboard mockup showing travel leads pipeline with '50+ leads/month' stat overlay"
-        },
-        templateNote: "💡 This playbook is built from a real consulting engagement. Replace city/region names to adapt for your market."
+        title: "Travel Agency Lead Machine",
+        short: "Featured: AI-powered capture-to-booking automation for travel leads.",
+        description: "Turn scattered inquiries from WhatsApp/Instagram/Facebook into a structured, automated travel sales pipeline with AI-generated itineraries and systematic follow-ups.",
+        price: "$29 (Suggested)",
+        tools: "WATI/Interakt, CRM, AI itinerary engine, WhatsApp/email automation",
+        covers: ["Capture inbound leads", "Generate itineraries fast", "Send proposals automatically", "Track pipeline to booking", "Collect post-trip reviews"],
+        flow: `flowchart LR
+A[WhatsApp/IG/FB inquiry] --> B[Lead capture form]
+B --> C[CRM entry\nWATI / Interakt]
+C --> D[AI generates itinerary]
+D --> E[Auto-send itinerary to client]
+E --> F[Follow-up sequence]
+F --> G[Booking confirmed]
+G --> H[Post-trip review]`,
+        sequence: `sequenceDiagram
+participant Client
+participant WhatsApp
+participant CRM
+participant AI as AI Engine
+participant Doc as Itinerary Doc
+participant System
+participant Agent
+Client->>WhatsApp: Inquiry
+WhatsApp->>CRM: Create/Update lead
+CRM->>AI: Request itinerary draft
+AI->>Doc: Generate itinerary
+System->>Client: Email itinerary
+Agent->>Doc: Review and finalize`,
+        useCase: `flowchart TB
+TA[Travel Agent] --> UC1((Capture leads))
+TA --> UC2((Generate itineraries))
+TA --> UC3((Send proposals))
+TA --> UC4((Track pipeline))
+CL[Client] --> UC5((Submit inquiry))
+CL --> UC6((Receive itinerary))
+CL --> UC7((Book trip))
+CL --> UC8((Leave review))`
       },
       {
-        title: "Real Estate Agent Follow-Up Automation",
-        shortDescription: "Never miss a hot lead again by automating inquiry capture, follow-up cadence, and showing reminders. Convert listing inquiries into qualified appointments with smart routing and message templates.",
+        title: "Real Estate Follow-ups",
+        short: "Automated inquiry response, viewing scheduling, and nurture sequences.",
+        description: "Ensure every property lead gets a rapid response, scheduled viewing, and drip follow-up through offer and closing stages.",
         price: "$35",
-        tags: "real estate automation, lead nurturing, appointment booking, crm workflows",
-        covers: [
-          "Capture leads from portals, website forms, and social DMs",
-          "Auto-qualify buyers/sellers with budget and timeline questions",
-          "Multi-touch follow-up sequences via email and WhatsApp",
-          "Open house reminder and attendance tracking automation",
-          "Pipeline stages for cold, warm, hot, and appointment-ready leads",
-          "Auto-task creation for calls and property match sending",
-          "Weekly KPI report for response time and booking rate"
-        ],
-        tools: "Zapier, HubSpot CRM, Calendly, Google Sheets, Twilio/WhatsApp, Gmail, OpenAI",
-        socialPrompts: {
-          igReel: "Show a property inquiry instantly triggering a follow-up sequence and booked call.",
-          igStory: "Story sequence: new lead alert, auto-qualification form, booked showing.",
-          fbReel: "Visualize the follow-up ladder that turns ghosted leads into appointments.",
-          fbStory: "Quick demo of automated reminders before open house day.",
-          ytShort: "Capture a 30-second walkthrough of lead intake to calendar booking automation."
-        },
-        marketing: {
-          x: "Agents don’t lose deals on skill—they lose them on follow-up speed. This playbook automates inquiry capture, qualification, reminders, and appointment booking so every lead gets a professional response instantly.",
-          redditTitle: "Real estate follow-up playbook: automate 80% of lead nurturing",
-          redditBody: "If your pipeline is full but closings are slow, this workflow helps you respond faster and stay consistent. It includes templates, triggers, and CRM structure you can copy in a day.",
-          discord: "🏡 Real Estate Follow-Up Automation is live\nAuto-capture and qualify inbound inquiries.\nRun timed WhatsApp/email nurture flows.\nBook more showings without manual chasing."
-        },
-        media: {
-          gumroad: "Luxury property CRM dashboard with lead stages and automated follow-up timeline.",
-          youtube: "Real estate agent with phone alerts transforming into booked showing calendar.",
-          instagram: "High-contrast post showing inquiry bubble to closed-deal pipeline arrow.",
-          facebook: "Clean branded graphic with homes, lead cards, and automation checklist.",
-          x: "Dark minimal card with headline " + '"Stop Losing Leads After First Contact"' + " and CRM nodes."
-        }
+        tools: "Website forms, CRM, email automation, calendar workflows",
+        covers: ["Track leads", "Schedule viewings", "Send comparables", "Run nurture drips"],
+        flow: `flowchart LR
+A[Property inquiry] --> B[CRM capture]
+B --> C[Auto schedule viewing]
+C --> D[Follow-up drip emails]
+D --> E[Offer stage]
+E --> F[Closing]`,
+        sequence: `sequenceDiagram
+participant Buyer
+participant Website
+participant CRM
+participant Agent
+participant System
+Buyer->>Website: Submit inquiry
+Website->>CRM: Save lead
+CRM->>Agent: Lead notification
+Agent->>Buyer: Schedule viewing
+System->>Buyer: Drip emails`,
+        useCase: `flowchart TB
+AG[Agent] --> A1((Track leads))
+AG --> A2((Schedule viewings))
+AG --> A3((Send comparables))
+BY[Buyer] --> B1((Inquire))
+BY --> B2((View property))
+BY --> B3((Make offer))`
       },
       {
-        title: "Fitness Coach Client Onboarding Automation",
-        shortDescription: "Turn new sign-ups into fully onboarded clients with zero manual admin. Automate intake forms, payment confirmation, welcome sequences, and personalized plan delivery.",
+        title: "Fitness Coach Onboarding",
+        short: "From signup to AI-assisted workout plans and weekly check-ins.",
+        description: "Automate intake, plan creation, delivery, and progress tracking so coaches spend more time coaching and less time on admin.",
         price: "$29",
-        tags: "fitness business automation, client onboarding, coaching systems, retention workflows",
-        covers: [
-          "Lead magnet to consultation booking workflow",
-          "Automated health questionnaire and consent collection",
-          "Payment confirmation and onboarding packet delivery",
-          "AI-assisted personalized plan draft generation",
-          "Check-in reminders and progress form automation",
-          "Missed session re-engagement sequences",
-          "Retention dashboard for active and at-risk clients"
-        ],
-        tools: "Make, Stripe, Google Forms, Trainerize, Notion, MailerLite, Zapier",
-        socialPrompts: {
-          igReel: "Show a new coaching payment instantly triggering welcome docs and workout setup.",
-          igStory: "Story of coach saving 2 hours/day with automated onboarding tasks.",
-          fbReel: "Before/after: manual onboarding spreadsheet vs automated coaching pipeline.",
-          fbStory: "Quick 3-screen flow from signup to first week plan sent.",
-          ytShort: "Record an end-to-end client onboarding automation in under 30 seconds."
-        },
-        marketing: {
-          x: "Online coaches: onboarding shouldn’t eat your coaching time. This playbook automates forms, payments, welcome messages, and plan delivery so you can focus on clients, not admin.",
-          redditTitle: "Fitness coaches: here’s an onboarding automation system you can clone",
-          redditBody: "I mapped a simple automation stack for intake, payment, and check-ins. It’s designed for solo coaches who want pro systems without hiring an ops team.",
-          discord: "💪 Fitness Coach Onboarding Playbook\nAutomate intake + payment + welcome flow.\nDeliver plans faster with fewer manual steps.\nSave time, improve client experience."
-        },
-        media: {
-          gumroad: "Athletic coaching workspace with onboarding checklist and progress charts on screen.",
-          youtube: "Coach pointing at dashboard where new client turns into automated weekly plan.",
-          instagram: "Motivational fitness-themed graphic with headline about frictionless client onboarding.",
-          facebook: "Professional gym-business visual with forms, payments, and check-in icons connected.",
-          x: "Minimal dark tile showing " + '"Onboard Clients While You Sleep"' + " and automation nodes."
-        }
+        tools: "Intake forms, AI plan generation, coaching app assignment",
+        covers: ["Onboard clients", "Generate plans", "Track progress", "Weekly check-ins"],
+        flow: `flowchart LR
+A[Client signs up] --> B[Intake form]
+B --> C[AI generates workout plan]
+C --> D[Auto-assign in app]
+D --> E[Weekly check-in]
+E --> F[Progress tracking]`,
+        sequence: `sequenceDiagram
+participant Client
+participant Form
+participant System
+participant AI
+participant Plan as Workout Plan
+participant Coach
+Client->>Form: Fill intake
+Form->>System: Submit data
+System->>AI: Generate plan
+AI->>Plan: Return draft
+System->>Client: Deliver plan
+Coach->>Plan: Review`,
+        useCase: `flowchart TB
+CO[Coach] --> C1((Onboard clients))
+CO --> C2((Generate plans))
+CO --> C3((Track progress))
+CL[Client] --> U1((Fill intake))
+CL --> U2((Receive plan))
+CL --> U3((Log workouts))`
       },
       {
-        title: "Salon & Spa Booking Automation",
-        shortDescription: "Automate appointment requests, confirmations, reminders, and post-visit upsells for beauty businesses. Reduce no-shows and fill calendar gaps with smart rebooking flows.",
+        title: "Salon/Spa Booking",
+        short: "Booking confirmations, reminders, reviews, and rebooking automation.",
+        description: "Reduce no-shows and improve repeat bookings with automatic communication before and after each appointment.",
         price: "$27",
-        tags: "salon automation, spa booking, no-show reduction, client retention",
-        covers: [
-          "Multi-channel booking request capture",
-          "Auto-confirmations with service prep instructions",
-          "Reminder flows at 24h and 2h before appointment",
-          "Waitlist auto-fill for cancellations",
-          "Post-visit review request and referral prompt",
-          "Rebooking nudges based on service type",
-          "Service popularity and no-show analytics"
-        ],
-        tools: "Square Appointments, Calendly, Zapier, WhatsApp Business, Google Sheets, Mailchimp",
-        socialPrompts: {
-          igReel: "Show canceled slot getting auto-filled from waitlist in seconds.",
-          igStory: "Visualize no-show rate drop after automated reminders.",
-          fbReel: "Show booking request becoming confirmed appointment with reminder chain.",
-          fbStory: "Quick salon workflow from inquiry to rebooking text.",
-          ytShort: "Record automation that sends prep tips and post-visit review asks automatically."
-        },
-        marketing: {
-          x: "Salon owners: less no-shows, more repeat clients. This playbook automates bookings, reminders, cancellations, reviews, and rebooking nudges using tools you already know.",
-          redditTitle: "Salon/spa automation workflow to reduce no-shows and boost rebookings",
-          redditBody: "If your front desk is overloaded, this system handles repetitive booking messages and reminders automatically. You keep the personal touch while automation handles routine steps.",
-          discord: "💅 Salon & Spa Booking Automation\nAuto-confirm + remind + rebook clients.\nFill canceled slots with waitlist logic.\nRun smoother days with fewer no-shows."
-        },
-        media: {
-          gumroad: "Elegant salon scheduling dashboard with appointment timeline and reminder status chips.",
-          youtube: "Split-screen of busy front desk vs automated booking system with calm workflow.",
-          instagram: "Beauty-themed graphic with calendar icons and message bubbles for reminders.",
-          facebook: "Polished spa marketing image showing smooth booking journey end-to-end.",
-          x: "Clean dark card with headline about cutting no-shows via automated reminders."
-        }
+        tools: "Booking system, SMS/WhatsApp reminders, review automation",
+        covers: ["Manage bookings", "Send reminders", "Collect reviews", "Promote rebooking"],
+        flow: `flowchart LR
+A[Client books online] --> B[Confirmation SMS/WhatsApp]
+B --> C[Reminder 24h before]
+C --> D[Service]
+D --> E[Auto-request review]
+E --> F[Rebooking offer]`,
+        sequence: `sequenceDiagram
+participant Client
+participant Booking as Booking system
+participant System
+participant Staff
+Client->>Booking: Book appointment
+System->>Client: Confirmation
+System->>Client: Reminder
+Staff->>Client: Service
+System->>Client: Review request`,
+        useCase: `flowchart TB
+OW[Owner] --> O1((Manage bookings))
+OW --> O2((Send reminders))
+OW --> O3((Collect reviews))
+CL[Client] --> C1((Book appointment))
+CL --> C2((Receive reminders))
+CL --> C3((Leave review))`
       },
       {
-        title: "Restaurant Review & Reputation Automation",
-        shortDescription: "Help restaurants collect more positive reviews and respond faster to feedback. Automate post-dining review requests, sentiment tagging, and owner alerts for low ratings.",
+        title: "Restaurant Review Management",
+        short: "Automate review capture, sentiment routing, and owner alerts.",
+        description: "Capture feedback at scale, push positive sentiment publicly, and alert owners immediately for negative experiences.",
         price: "$25",
-        tags: "restaurant automation, review management, reputation system, local seo",
-        covers: [
-          "Receipt-linked review request workflow",
-          "Positive reviewer routing to Google review page",
-          "Negative feedback captured privately first",
-          "AI sentiment tagging and priority scoring",
-          "Owner alert system for urgent complaints",
-          "Auto-response templates for common issues",
-          "Weekly reputation report and trend chart"
-        ],
-        tools: "Make, Zapier, Google Business Profile, Typeform, Twilio SMS, Airtable, OpenAI",
-        socialPrompts: {
-          igReel: "Show how one dining visit triggers a smart review request funnel.",
-          igStory: "Before/after review rating growth with automation snapshots.",
-          fbReel: "Demonstrate negative feedback being redirected to private resolution flow.",
-          fbStory: "Highlight owner alert when low rating appears.",
-          ytShort: "Create a short explaining review automation that protects brand reputation."
-        },
-        marketing: {
-          x: "Restaurants live or die on reviews. This playbook automates review requests, sentiment handling, and owner alerts so you can improve ratings without constant manual monitoring.",
-          redditTitle: "Restaurant reputation automation: get more 5-star reviews the ethical way",
-          redditBody: "I designed a simple post-visit workflow that increases review volume while routing issues to private support first. It’s practical for independent restaurants with small teams.",
-          discord: "🍽️ New: Review & Reputation Automation\nTrigger smart review requests after each visit.\nCatch low ratings early with owner alerts.\nGrow trust and local visibility faster."
-        },
-        media: {
-          gumroad: "Restaurant owner reviewing star-rating dashboard with automated feedback funnel visuals.",
-          youtube: "Bold star-rating graphic with arrows from diners to review pipeline.",
-          instagram: "Food brand style post showing " + '"From Dinner to 5-Star Review"' + " workflow.",
-          facebook: "Professional restaurant social image with review trend chart and alert icons.",
-          x: "Minimal card featuring reputation score meter and automated feedback loop."
-        }
+        tools: "QR prompts, AI sentiment, owner alerts, monthly reporting",
+        covers: ["Monitor reviews", "Respond fast", "Generate monthly reports"],
+        flow: `flowchart LR
+A[Diner visits] --> B[Receipt/QR review request]
+B --> C[AI categorizes sentiment]
+C --> D{Sentiment}
+D -->|Positive| E[Share publicly]
+D -->|Negative| F[Alert owner]
+E --> G[Monthly report]
+F --> G`,
+        sequence: `sequenceDiagram
+participant Diner
+participant System
+participant AI
+participant Owner
+Diner->>System: QR scan
+System->>Diner: Review prompt
+Diner->>System: Submit review
+AI->>System: Sentiment analysis
+System->>Owner: Alert/report`,
+        useCase: `flowchart TB
+OW[Owner] --> O1((Monitor reviews))
+OW --> O2((Respond to feedback))
+OW --> O3((Generate reports))
+DI[Diner] --> D1((Leave review))
+DI --> D2((Receive thank you))`
       },
       {
-        title: "E-commerce Returns & Support Automation",
-        shortDescription: "Streamline return requests, status updates, and refund workflows for online stores. Reduce support ticket chaos with automated policy checks and customer communication.",
+        title: "E-commerce Returns",
+        short: "Streamlined returns with auto-classification, labels, refunds, and surveys.",
+        description: "Cut support load and improve customer trust with transparent automated returns from request to refund.",
         price: "$33",
-        tags: "ecommerce automation, returns workflow, support automation, refunds",
-        covers: [
-          "Return request form with order validation",
-          "Auto-approval rules based on return policy",
-          "Label generation and step-by-step return instructions",
-          "Status updates via email or WhatsApp",
-          "Refund initiation and internal approvals",
-          "Escalation path for edge cases",
-          "Return reason analytics for product improvement"
-        ],
-        tools: "Shopify, Gorgias, Zapier, Make, Google Sheets, Shippo, Stripe",
-        socialPrompts: {
-          igReel: "Show return request getting approved and label sent automatically.",
-          igStory: "Visual timeline of return ticket progress updates without manual support replies.",
-          fbReel: "Compare messy inbox support vs automated returns portal flow.",
-          fbStory: "Highlight instant eligibility check based on return policy.",
-          ytShort: "Create a fast walkthrough of auto-return processing from form to refund trigger."
-        },
-        marketing: {
-          x: "Drowning in return tickets? This e-commerce automation playbook handles policy checks, labels, updates, and refund triggers so support teams can focus on high-value issues.",
-          redditTitle: "Ecom founders: automate your return workflow and reduce support backlog",
-          redditBody: "This system turns returns into a structured, mostly self-serve process for customers. It includes practical templates and automations for Shopify-style stores.",
-          discord: "📦 E-commerce Returns Automation\nAutomate return eligibility, labels, and updates.\nReduce repetitive support messages instantly.\nGive customers a smoother post-purchase experience."
-        },
-        media: {
-          gumroad: "Online store support dashboard with return stages and auto-update message cards.",
-          youtube: "Package return flow graphic with automation icons and fast refund signal.",
-          instagram: "Modern ecommerce visual showing simple return portal and happy customer outcome.",
-          facebook: "Clean support operations image with tickets transforming into automated workflows.",
-          x: "Dark UI-inspired card with headline about automating returns from request to refund."
-        }
+        tools: "Return forms, classification logic, shipping labels, refund workflows",
+        covers: ["Process returns", "Track inventory impact", "Analyze return patterns"],
+        flow: `flowchart LR
+A[Customer requests return] --> B[Auto-classify reason]
+B --> C[Generate label]
+C --> D[Track shipment]
+D --> E[Process refund]
+E --> F[Feedback survey]`,
+        sequence: `sequenceDiagram
+participant Customer
+participant System
+participant Warehouse
+Customer->>System: Return form
+System->>System: Classification
+System->>Customer: Shipping label
+Warehouse->>System: Item received
+System->>Customer: Refund
+System->>Customer: Survey`,
+        useCase: `flowchart TB
+ST[Store] --> S1((Process returns))
+ST --> S2((Track inventory))
+ST --> S3((Analyze patterns))
+CU[Customer] --> C1((Request return))
+CU --> C2((Track status))
+CU --> C3((Get refund))`
       },
       {
-        title: "Wedding & Event Planner Coordination Automation",
-        shortDescription: "Coordinate clients, vendors, timelines, and approvals with less back-and-forth. Automate reminders, checklist progress, and vendor communication to keep events on track.",
+        title: "Wedding/Event Planner",
+        short: "Vendor matching, timeline generation, and event coordination automation.",
+        description: "Automate planning workflows from inquiry to day-of checklist so planners can deliver consistently under tight deadlines.",
         price: "$37",
-        tags: "event planner automation, wedding operations, vendor coordination, timeline management",
-        covers: [
-          "Client intake and style preference capture",
-          "Vendor database and quote comparison automation",
-          "Timeline milestones with deadline reminders",
-          "Approval workflows for mood boards and budgets",
-          "Guest communication and RSVP status sync",
-          "Last-week event command center checklist",
-          "Post-event testimonial and referral automation"
-        ],
-        tools: "Notion, Airtable, Make, Zapier, Google Calendar, WhatsApp, Trello",
-        socialPrompts: {
-          igReel: "Show event timeline updates and vendor reminders happening automatically.",
-          igStory: "Story highlights of planning chaos transformed into organized automation boards.",
-          fbReel: "Demonstrate client approval workflow for décor and budget decisions.",
-          fbStory: "Quick visual of RSVP data syncing into one planner dashboard.",
-          ytShort: "Show a wedding planner automation stack that cuts coordination stress fast."
-        },
-        marketing: {
-          x: "Event planners juggle clients, vendors, and deadlines nonstop. This playbook automates reminders, approvals, and timeline ops so you can run polished events without drowning in messages.",
-          redditTitle: "Wedding/event planner automation playbook for client + vendor coordination",
-          redditBody: "I mapped practical workflows for timelines, approvals, and communication so planners can stay proactive. It’s built for boutique teams managing multiple events at once.",
-          discord: "💍 Event Planner Coordination Automation\nAutomate vendor reminders and client approvals.\nKeep timelines tight with smart milestone triggers.\nRun smoother events with less stress."
-        },
-        media: {
-          gumroad: "Elegant wedding planning dashboard with timeline bars, vendor cards, and checklist progress.",
-          youtube: "Planner holding tablet with automated event timeline and vendor alerts.",
-          instagram: "Chic event-planning graphic showing tasks flowing into completed milestones.",
-          facebook: "Professional creative image of wedding ops board with coordinated workflow lines.",
-          x: "Minimal dark card with headline on automating wedding planning coordination."
-        }
+        tools: "Budget forms, AI vendor matching, timeline/task system",
+        covers: ["Match vendors", "Build timelines", "Coordinate tasks"],
+        flow: `flowchart LR
+A[Inquiry] --> B[Budget questionnaire]
+B --> C[AI vendor matching]
+C --> D[Timeline generation]
+D --> E[Task assignments]
+E --> F[Day-of checklist]`,
+        sequence: `sequenceDiagram
+participant Couple
+participant System
+participant AI
+participant Planner
+Couple->>System: Inquiry form
+System->>System: Budget analysis
+AI->>Planner: Vendor matches
+Planner->>Couple: Proposal
+System->>Couple: Timeline
+System->>Planner: Vendor coordination`,
+        useCase: `flowchart TB
+PL[Planner] --> P1((Match vendors))
+PL --> P2((Generate timelines))
+PL --> P3((Coordinate tasks))
+CP[Couple] --> C1((Submit preferences))
+CP --> C2((Approve vendors))
+CP --> C3((Track progress))`
       },
       {
-        title: "Property Management Maintenance Automation",
-        shortDescription: "Automate maintenance request intake, contractor dispatch, and tenant updates for rental portfolios. Keep tickets organized and response times fast with workflow-based operations.",
+        title: "Property Management",
+        short: "Maintenance request triage, contractor assignment, and tenant updates.",
+        description: "Automate property maintenance operations for faster issue resolution and better tenant communication.",
         price: "$36",
-        tags: "property management automation, maintenance workflow, tenant communication, operations",
-        covers: [
-          "Tenant maintenance request form with photo upload",
-          "Issue triage by urgency and property type",
-          "Auto-dispatch to contractor based on category",
-          "Status notifications to tenants at each stage",
-          "Invoice collection and owner approval routing",
-          "SLA tracking for response and resolution time",
-          "Monthly maintenance cost and trend reporting"
-        ],
-        tools: "Airtable, Zapier, Make, Google Drive, WhatsApp Business, Slack, QuickBooks",
-        socialPrompts: {
-          igReel: "Show tenant issue submission instantly creating and assigning maintenance ticket.",
-          igStory: "Visualize maintenance ticket lifecycle from report to resolved update.",
-          fbReel: "Before/after of manual phone coordination vs automated contractor dispatch.",
-          fbStory: "Highlight tenant auto-updates reducing follow-up calls.",
-          ytShort: "Create a quick demo of maintenance request automation for property managers."
-        },
-        marketing: {
-          x: "Property managers: stop juggling maintenance in chats and calls. This playbook automates intake, triage, contractor dispatch, tenant updates, and owner approvals in one flow.",
-          redditTitle: "Property maintenance ops automation for managers handling multiple units",
-          redditBody: "This setup helps you standardize maintenance workflows and keep tenants informed automatically. Ideal for small teams scaling portfolios without expanding headcount.",
-          discord: "🏢 Property Maintenance Automation\nCapture, triage, and dispatch requests automatically.\nSend live status updates to tenants.\nTrack costs and resolution SLAs in one system."
-        },
-        media: {
-          gumroad: "Property management operations dashboard with maintenance queue and status trackers.",
-          youtube: "Building icon pipeline showing tenant request routed to contractor and resolved.",
-          instagram: "Modern real-estate ops graphic featuring maintenance workflow and tenant updates.",
-          facebook: "Professional property operations visual with tickets, dispatch, and approval path.",
-          x: "Dark card with headline about automating maintenance from report to resolution."
-        }
+        tools: "Maintenance forms, AI categorization, contractor dispatch",
+        covers: ["Triage requests", "Assign contractors", "Track completion"],
+        flow: `flowchart LR
+A[Tenant reports issue] --> B[Auto-categorize issue]
+B --> C[Assign contractor]
+C --> D[Schedule repair]
+D --> E[Tenant notification]
+E --> F[Completion verification]`,
+        sequence: `sequenceDiagram
+participant Tenant
+participant AI
+participant System
+participant Contractor
+Tenant->>System: Maintenance form
+AI->>System: Categorize issue
+System->>Contractor: Assignment
+Contractor->>System: Schedule repair
+System->>Tenant: Status update
+Tenant->>System: Verify completion`,
+        useCase: `flowchart TB
+MG[Manager] --> M1((Triage requests))
+MG --> M2((Assign contractors))
+MG --> M3((Track completion))
+TN[Tenant] --> T1((Report issue))
+TN --> T2((Track status))
+TN --> T3((Confirm fix))`
       },
       {
-        title: "Tutoring Center Scheduling & Parent Updates Automation",
-        shortDescription: "Automate class scheduling, attendance alerts, and parent communication for tutoring businesses. Reduce admin overhead while improving student and parent experience.",
+        title: "Tutoring Center",
+        short: "Inquiry-to-tutor matching with scheduling and parent progress updates.",
+        description: "Automate student onboarding, tutor allocation, and progress reporting to improve outcomes while reducing admin work.",
         price: "$28",
-        tags: "tutoring automation, class scheduling, parent communication, education ops",
-        covers: [
-          "Student inquiry intake and level assessment workflow",
-          "Batch scheduling by subject, tutor, and availability",
-          "Automated attendance and absence notifications",
-          "Homework reminder and progress summary messages",
-          "Parent payment reminder sequences",
-          "Tutor workload balancing automation",
-          "Performance dashboard by student and cohort"
-        ],
-        tools: "Google Calendar, Calendly, Airtable, Zapier, WhatsApp API, Stripe, Notion",
-        socialPrompts: {
-          igReel: "Show a parent inquiry turning into scheduled class and reminder sequence.",
-          igStory: "Story format: absent student alert sent instantly to parent.",
-          fbReel: "Demonstrate weekly progress summaries auto-generated for parents.",
-          fbStory: "Quick flow from enrollment form to tutor assignment.",
-          ytShort: "Record scheduling automation for tutors with attendance and parent updates."
-        },
-        marketing: {
-          x: "Tutoring centers shouldn’t run on spreadsheet chaos. This playbook automates scheduling, attendance alerts, parent updates, and payment reminders so your team can focus on learning outcomes.",
-          redditTitle: "Tutoring center ops: automate scheduling + parent communication",
-          redditBody: "I built a practical workflow for centers handling multiple tutors and batches. It cuts repetitive admin while keeping parents updated consistently.",
-          discord: "📚 Tutoring Ops Automation\nAutomate scheduling, attendance alerts, and parent updates.\nBalance tutor workloads and track performance.\nLess admin, better learning experience."
-        },
-        media: {
-          gumroad: "Education operations dashboard with class calendar, attendance stats, and parent update feed.",
-          youtube: "Tutor and student with overlay of auto-scheduling and parent-notification workflow.",
-          instagram: "Clean academic-themed post showing enrollment-to-progress automation flow.",
-          facebook: "Professional tutoring center visual with timetable, reminders, and report cards.",
-          x: "Minimal dark card with headline on automating tutoring center communication."
-        }
+        tools: "Assessment forms, AI tutor matching, schedule/report automation",
+        covers: ["Match tutors", "Schedule sessions", "Send progress reports"],
+        flow: `flowchart LR
+A[Parent inquiry] --> B[Student assessment form]
+B --> C[AI matches tutor]
+C --> D[Schedule sessions]
+D --> E[Progress reports]
+E --> F[Re-enrollment]`,
+        sequence: `sequenceDiagram
+participant Parent
+participant System
+participant AI
+participant Tutor
+Parent->>System: Inquiry
+System->>Parent: Assessment form
+AI->>System: Tutor match
+System->>Tutor: Session schedule
+Tutor->>System: Session outcome
+System->>Parent: Progress report`,
+        useCase: `flowchart TB
+CT[Center] --> C1((Match tutors))
+CT --> C2((Schedule classes))
+CT --> C3((Send reports))
+PR[Parent] --> P1((Enroll child))
+PR --> P2((View progress))
+PR --> P3((Communicate with tutor))`
       },
       {
-        title: "Dental Clinic Patient Intake & Recall Automation",
-        shortDescription: "Automate new patient intake, appointment reminders, and recall campaigns for dental clinics. Improve chair utilization and reduce front-desk pressure with reliable workflows.",
+        title: "Dental Clinic",
+        short: "Patient intake, reminders, post-care instructions, and recall automation.",
+        description: "Improve chair utilization and patient communication with automated workflows before and after each appointment.",
         price: "$34",
-        tags: "dental automation, patient intake, appointment reminders, clinic operations",
-        covers: [
-          "Digital intake forms with insurance and consent capture",
-          "Appointment confirmation and prep instructions",
-          "Automated reminder sequence to reduce no-shows",
-          "Post-visit follow-up and treatment plan reminders",
-          "Recall campaigns for cleaning/checkup due dates",
-          "Escalation workflow for urgent call-backs",
-          "KPI dashboard for no-show and recall conversion"
-        ],
-        tools: "Jotform, Google Sheets, Zapier, Twilio SMS, Calendly, HubSpot, OpenAI",
-        socialPrompts: {
-          igReel: "Show patient form submission triggering instant intake record and reminder sequence.",
-          igStory: "Before/after clinic calendar with fewer no-shows due to automation.",
-          fbReel: "Demonstrate recall campaign bringing overdue patients back into schedule.",
-          fbStory: "Highlight automated pre-appointment instructions sent to patients.",
-          ytShort: "Create a quick clinic ops clip from patient intake to recall workflow."
-        },
-        marketing: {
-          x: "Dental clinics can automate intake, reminders, and recalls without losing a personal touch. This playbook helps reduce no-shows, improve schedule fill rates, and free up front-desk time.",
-          redditTitle: "Dental clinic automation for intake, reminders, and patient recall",
-          redditBody: "This workflow system is built for clinics that want smoother patient communication and better chair utilization. You get actionable templates, triggers, and KPI tracking.",
-          discord: "🦷 Dental Clinic Intake Automation\nAutomate forms, reminders, and recall campaigns.\nReduce no-shows and boost schedule utilization.\nLighten front-desk workload with smart workflows."
-        },
-        media: {
-          gumroad: "Modern dental clinic dashboard with patient intake forms and appointment reminder timeline.",
-          youtube: "Dental office visual with calendar filling up from automated recall campaign.",
-          instagram: "Healthcare-themed graphic showing patient intake to appointment confirmation flow.",
-          facebook: "Clean clinical operations image with reminders, recalls, and KPI widgets.",
-          x: "Minimal medical-style card with headline about automating patient intake and recalls."
-        }
+        tools: "Online booking, digital forms, AI post-care content, recall reminders",
+        covers: ["Manage appointments", "Send reminders", "Generate instructions"],
+        flow: `flowchart LR
+A[Patient books online] --> B[Intake forms pre-visit]
+B --> C[Appointment reminder]
+C --> D[Visit]
+D --> E[AI post-care instructions]
+E --> F[6-month recall reminder]`,
+        sequence: `sequenceDiagram
+participant Patient
+participant System
+participant Dentist
+participant AI
+Patient->>System: Online booking
+System->>Patient: Intake forms
+System->>Patient: Reminder
+Dentist->>Patient: Treatment
+AI->>System: Post-care instructions
+System->>Patient: Recall reminder`,
+        useCase: `flowchart TB
+CL[Clinic] --> C1((Manage appointments))
+CL --> C2((Send reminders))
+CL --> C3((Generate instructions))
+PT[Patient] --> P1((Book visit))
+PT --> P2((Fill forms))
+PT --> P3((Receive care instructions))`
       }
     ];
 
-    const catalog = document.getElementById('catalog');
-    const modal = document.getElementById('modal');
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menuToggle');
+    const productList = document.getElementById('productList');
     const detail = document.getElementById('detail');
-    const closeBtn = document.getElementById('closeBtn');
 
-    const sectionList = (title, arr) => `
-      <div class="section">
-        <h4>${title}</h4>
-        <ul>${arr.map(i => `<li>${i}</li>`).join('')}</ul>
-      </div>
-    `;
+    let selectedIndex = 0;
 
-    products.forEach((p, i) => {
-      const card = document.createElement('article');
-      card.className = p.featured ? 'card featured' : 'card';
-      card.innerHTML = `
-        <div class="thumb ${p.featured ? 'featured-thumb' : ''}">Playbook #${i + 1}${p.featured ? '<span class="featured-badge">Featured</span>' : ''}</div>
-        <div class="card-body">
-          <h3>${p.title}</h3>
-          <p class="small">${p.shortDescription.slice(0, 130)}...</p>
-          <p class="price">${p.price}</p>
-        </div>
-      `;
-      card.addEventListener('click', () => openDetail(p, i + 1));
-      catalog.appendChild(card);
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'default',
+      securityLevel: 'loose',
+      flowchart: { curve: 'basis' }
     });
 
-    function openDetail(p, n) {
+    function renderSidebar() {
+      productList.innerHTML = products.map((p, i) => `
+        <button class="product-btn ${i === selectedIndex ? 'active' : ''}" data-index="${i}" type="button">
+          <p class="product-title">${i + 1}. ${p.title}</p>
+          <p class="product-desc">${p.short}</p>
+          ${p.featured ? '<span class="featured-badge">Featured</span>' : ''}
+        </button>
+      `).join('');
+
+      [...productList.querySelectorAll('.product-btn')].forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectedIndex = Number(btn.dataset.index);
+          renderSidebar();
+          renderDetail();
+          if (window.innerWidth <= 900) sidebar.classList.remove('open');
+        });
+      });
+    }
+
+    function renderDetail() {
+      const p = products[selectedIndex];
       detail.innerHTML = `
-        <h2 id="title">#${n} ${p.title}</h2>
-        <p class="meta">${p.shortDescription}</p>
+        <h2>${selectedIndex + 1}. ${p.title} ${p.featured ? '⭐' : ''}</h2>
+        <p class="meta">${p.description}</p>
 
         <div class="two-col">
           <div class="panel">
-            <div class="section">
-              <h4>Product Info</h4>
-              <p><strong>Title:</strong> ${p.title}</p>
-              <p><strong>Price Suggestion:</strong> <span class="tagline">${p.price}</span></p>
-              <p><strong>Tags:</strong> ${p.tags}</p>
-            </div>
+            <strong>Price</strong>
+            <p>${p.price}</p>
           </div>
           <div class="panel">
-            <div class="section">
-              <h4>Tools Used</h4>
-              <p>${p.tools}</p>
-            </div>
+            <strong>Core Stack</strong>
+            <p>${p.tools}</p>
           </div>
         </div>
 
-        ${sectionList('What the Playbook Covers', p.covers)}
+        <h3>What this playbook covers</h3>
+        <ul>${p.covers.map(item => `<li>${item}</li>`).join('')}</ul>
 
-        <div class="section">
-          <h4>Social Video Prompts</h4>
-          <ul>
-            <li><strong>Instagram Reel:</strong> ${p.socialPrompts.igReel}</li>
-            <li><strong>Instagram Story:</strong> ${p.socialPrompts.igStory}</li>
-            <li><strong>Facebook Reel:</strong> ${p.socialPrompts.fbReel}</li>
-            <li><strong>Facebook Story:</strong> ${p.socialPrompts.fbStory}</li>
-            <li><strong>YouTube Short:</strong> ${p.socialPrompts.ytShort}</li>
-          </ul>
-        </div>
+        <h3>Diagrams</h3>
+        <details>
+          <summary>Flow Diagram</summary>
+          <div class="diagram-wrap"><div class="mermaid">${p.flow}</div></div>
+        </details>
 
-        <div class="section">
-          <h4>Marketing Copy</h4>
-          <ul>
-            <li><strong>X/Twitter:</strong> ${p.marketing.x}</li>
-            <li><strong>Reddit Title:</strong> ${p.marketing.redditTitle}<br><strong>Body:</strong> ${p.marketing.redditBody}</li>
-            <li><strong>Discord Announcement:</strong><br><span class="mono">${p.marketing.discord.replace(/\n/g, '<br>')}</span></li>
-          </ul>
-        </div>
+        <details>
+          <summary>Sequence Diagram</summary>
+          <div class="diagram-wrap"><div class="mermaid">${p.sequence}</div></div>
+        </details>
 
-        <div class="section">
-          <h4>Media Prompts</h4>
-          <ul>
-            <li><strong>Gumroad Cover:</strong> ${p.media.gumroad}</li>
-            <li><strong>YouTube Thumbnail:</strong> ${p.media.youtube}</li>
-            <li><strong>Instagram Post:</strong> ${p.media.instagram}</li>
-            <li><strong>Facebook Share Image:</strong> ${p.media.facebook}</li>
-            <li><strong>X/Twitter Card:</strong> ${p.media.x}</li>
-          </ul>
-        </div>
-
-        ${p.templateNote ? `<p class="small" style="margin-top:14px;">${p.templateNote}</p>` : ''}
+        <details>
+          <summary>Use Case Diagram (Actor-style flowchart)</summary>
+          <div class="diagram-wrap"><div class="mermaid">${p.useCase}</div></div>
+        </details>
       `;
-      modal.classList.add('show');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+
+      mermaid.run({ nodes: detail.querySelectorAll('.mermaid') });
     }
 
-    function closeModal() {
-      modal.classList.remove('show');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
+    menuToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
 
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    renderSidebar();
+    renderDetail();
   </script>
 </body>
 </html>
