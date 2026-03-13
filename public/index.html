@@ -225,13 +225,20 @@
       border-bottom-color: var(--border);
     }
 
-    .diagram-wrap { padding: 10px 8px 14px; }
+    .diagram-wrap { padding: 10px 0 14px; width: 100%; }
 
     .mermaid {
       background: #fff;
       border-radius: 10px;
       overflow-x: auto;
-      padding: 6px;
+      padding: 12px;
+      width: 100%;
+      min-height: 200px;
+    }
+    .mermaid svg {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
     }
 
     @media (max-width: 900px) {
