@@ -284,7 +284,7 @@
         price: "$29 (Suggested)",
         tools: "WATI/Interakt, CRM, AI itinerary engine, WhatsApp/email automation",
         covers: ["Capture inbound leads", "Generate itineraries fast", "Send proposals automatically", "Track pipeline to booking", "Collect post-trip reviews"],
-        flow: `flowchart LR
+        flow: `flowchart TD
 A[WhatsApp/IG/FB inquiry] --> B[Lead capture form]
 B --> C[CRM entry\nWATI / Interakt]
 C --> D[AI generates itinerary]
@@ -323,7 +323,7 @@ CL --> UC8((Leave review))`
         price: "$35",
         tools: "Website forms, CRM, email automation, calendar workflows",
         covers: ["Track leads", "Schedule viewings", "Send comparables", "Run nurture drips"],
-        flow: `flowchart LR
+        flow: `flowchart TD
 A[Property inquiry] --> B[CRM capture]
 B --> C[Auto schedule viewing]
 C --> D[Follow-up drip emails]
@@ -355,7 +355,7 @@ BY --> B3((Make offer))`
         price: "$29",
         tools: "Intake forms, AI plan generation, coaching app assignment",
         covers: ["Onboard clients", "Generate plans", "Track progress", "Weekly check-ins"],
-        flow: `flowchart LR
+        flow: `flowchart TD
 A[Client signs up] --> B[Intake form]
 B --> C[AI generates workout plan]
 C --> D[Auto-assign in app]
@@ -389,7 +389,7 @@ CL --> U3((Log workouts))`
         price: "$27",
         tools: "Booking system, SMS/WhatsApp reminders, review automation",
         covers: ["Manage bookings", "Send reminders", "Collect reviews", "Promote rebooking"],
-        flow: `flowchart LR
+        flow: `flowchart TD
 A[Client books online] --> B[Confirmation SMS/WhatsApp]
 B --> C[Reminder 24h before]
 C --> D[Service]
@@ -420,7 +420,7 @@ CL --> C3((Leave review))`
         price: "$25",
         tools: "QR prompts, AI sentiment, owner alerts, monthly reporting",
         covers: ["Monitor reviews", "Respond fast", "Generate monthly reports"],
-        flow: `flowchart LR
+        flow: `flowchart TD
 A[Diner visits] --> B[Receipt/QR review request]
 B --> C[AI categorizes sentiment]
 C --> D{Sentiment}
@@ -452,7 +452,7 @@ DI --> D2((Receive thank you))`
         price: "$33",
         tools: "Return forms, classification logic, shipping labels, refund workflows",
         covers: ["Process returns", "Track inventory impact", "Analyze return patterns"],
-        flow: `flowchart LR
+        flow: `flowchart TD
 A[Customer requests return] --> B[Auto-classify reason]
 B --> C[Generate label]
 C --> D[Track shipment]
@@ -483,7 +483,7 @@ CU --> C3((Get refund))`
         price: "$37",
         tools: "Budget forms, AI vendor matching, timeline/task system",
         covers: ["Match vendors", "Build timelines", "Coordinate tasks"],
-        flow: `flowchart LR
+        flow: `flowchart TD
 A[Inquiry] --> B[Budget questionnaire]
 B --> C[AI vendor matching]
 C --> D[Timeline generation]
@@ -515,7 +515,7 @@ CP --> C3((Track progress))`
         price: "$36",
         tools: "Maintenance forms, AI categorization, contractor dispatch",
         covers: ["Triage requests", "Assign contractors", "Track completion"],
-        flow: `flowchart LR
+        flow: `flowchart TD
 A[Tenant reports issue] --> B[Auto-categorize issue]
 B --> C[Assign contractor]
 C --> D[Schedule repair]
@@ -547,7 +547,7 @@ TN --> T3((Confirm fix))`
         price: "$28",
         tools: "Assessment forms, AI tutor matching, schedule/report automation",
         covers: ["Match tutors", "Schedule sessions", "Send progress reports"],
-        flow: `flowchart LR
+        flow: `flowchart TD
 A[Parent inquiry] --> B[Student assessment form]
 B --> C[AI matches tutor]
 C --> D[Schedule sessions]
@@ -579,7 +579,7 @@ PR --> P3((Communicate with tutor))`
         price: "$34",
         tools: "Online booking, digital forms, AI post-care content, recall reminders",
         covers: ["Manage appointments", "Send reminders", "Generate instructions"],
-        flow: `flowchart LR
+        flow: `flowchart TD
 A[Patient books online] --> B[Intake forms pre-visit]
 B --> C[Appointment reminder]
 C --> D[Visit]
@@ -617,7 +617,9 @@ PT --> P3((Receive care instructions))`
       startOnLoad: false,
       theme: 'default',
       securityLevel: 'loose',
-      flowchart: { curve: 'basis' }
+      flowchart: { curve: 'basis', useMaxWidth: true, htmlLabels: true, padding: 20 },
+      sequence: { useMaxWidth: true, width: 150, height: 65 },
+      themeVariables: { fontSize: '14px' }
     });
 
     function renderSidebar() {
