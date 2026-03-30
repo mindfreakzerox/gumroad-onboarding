@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Automation Playbook Catalog | Gumroad Ideas</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-soft: #f8fbff;
+      --text: #112033;
+      --muted: #5d6f86;
+      --border: #dbe5f0;
+      --brand: #2b7de9;
+      --brand-soft: #e8f2ff;
+      --teal: #10b7a6;
+      --shadow: 0 8px 28px rgba(19, 44, 77, 0.08);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0;
+      padding: 22px 32px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+
+    .logout-link {
+      color: #5d6f86;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 6px 10px;
+      border-radius: 10px;
+    }
+
+    .logout-link:hover {
+      color: #17395f;
+      border-color: #b8cde3;
+    }
+
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+      color: #0f2440;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 900px;
+    }
+
+    .chips {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: #274665;
+      font-size: .86rem;
+      font-weight: 600;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 16px;
+      min-height: 68vh;
+    }
+
+    .sidebar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .sidebar-head {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      color: #19314e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface-soft);
+      color: #173352;
+      font-size: 1rem;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    .product-list {
+      overflow-y: auto;
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .product-btn {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 12px;
+      padding: 11px;
+      cursor: pointer;
+      transition: all .18s ease;
+    }
+
+    .product-btn:hover {
+      border-color: #b8cde3;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 14px rgba(30, 77, 128, 0.08);
+    }
+
+    .product-btn.active {
+      border-color: var(--brand);
+      background: var(--brand-soft);
+      box-shadow: inset 0 0 0 1px rgba(43,125,233,.08);
+    }
+
+    .product-title {
+      margin: 0;
+      font-weight: 700;
+      font-size: .95rem;
+      color: #102c4a;
+    }
+
+    .product-desc {
+      margin: 4px 0 0;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      margin-top: 7px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #90e3d8;
+      background: #eafffb;
+      color: #0b7f72;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .main {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .meta {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface-soft);
+      padding: 12px;
+    }
+
+    h2 { margin: 0 0 8px; }
+    h3 { margin: 16px 0 8px; color: #17406c; }
+
+    ul { margin: 8px 0 0 20px; padding: 0; }
+    li { margin-bottom: 6px; }
+
+    details {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 10px 0;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 12px 14px;
+      font-weight: 700;
+      color: #16395d;
+      background: #f7fbff;
+      border-bottom: 1px solid transparent;
+    }
+
+    details[open] summary {
+      border-bottom-color: var(--border);
+    }
+
+    .diagram-wrap { padding: 10px 0 14px; width: 100%; }
+
+    .mermaid {
+      background: #fff;
+      border-radius: 10px;
+      overflow-x: auto;
+      padding: 12px;
+      width: 100%;
+      min-height: 200px;
+    }
+    .mermaid svg {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+    }
+
+    
+
+    .action-row {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .playbook-btn {
+      border: 1px solid var(--brand);
+      background: var(--brand-soft);
+      color: #0f3f75;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .playbook-reader {
+      margin-top: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fff;
+      max-height: 58vh;
+      overflow: auto;
+    }
+
+    .playbook-reader h1, .playbook-reader h2, .playbook-reader h3 {
+      color: #17395f;
+    }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .menu-toggle { display: inline-flex; }
+      .sidebar .product-list { display: none; max-height: 44vh; }
+      .sidebar.open .product-list { display: grid; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <a class="logout-link" href="/logout">🔒 Logout</a>
+    </div>
+    <section class="hero">
+      <h1>AI Automation Playbook Catalog</h1>
+      <p class="subtitle">Explore 10 high-demand productized automation playbooks. Pick any idea from the left to view complete details and workflow diagrams on the right.</p>
+      <div class="chips">
+        <span class="chip">10 Product Ideas</span>
+        <span class="chip">Sidebar Navigation</span>
+        <span class="chip">Per-product Mermaid Diagrams</span>
+      </div>
+    </section>
+
+    <section class="layout" aria-label="Catalog with sidebar and detail panel">
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-head">
+          Product Ideas
+          <button id="menuToggle" class="menu-toggle" aria-label="Toggle product list">☰</button>
+        </div>
+        <div id="productList" class="product-list"></div>
+      </aside>
+      <article id="detail" class="main"></article>
+    </section>
+  </div>
+
+  <script>
+    const products = [
+      {
+        featured: true,
+        title: "Travel Agency Lead Machine",
+        short: "Featured: AI-powered capture-to-booking automation for travel leads.",
+        playbook: "01-travel-agency.md",
+        manual: "01-travel-agency-manual.md",
+        description: "Turn scattered inquiries from WhatsApp/Instagram/Facebook into a structured, automated travel sales pipeline with AI-generated itineraries and systematic follow-ups.",
+        price: "$29 (Suggested)",
+        tools: "WATI/Interakt, CRM, AI itinerary engine, WhatsApp/email automation",
+        covers: ["Capture inbound leads", "Generate itineraries fast", "Send proposals automatically", "Track pipeline to booking", "Collect post-trip reviews"],
+        flow: `flowchart TD
+A[WhatsApp/IG/FB inquiry] --> B[Lead capture form]
+B --> C[CRM entry\nWATI / Interakt]
+C --> D[AI generates itinerary]
+D --> E[Auto-send itinerary to client]
+E --> F[Follow-up sequence]
+F --> G[Booking confirmed]
+G --> H[Post-trip review]`,
+        sequence: `sequenceDiagram
+participant Client
+participant WhatsApp
+participant CRM
+participant AI as AI Engine
+participant Doc as Itinerary Doc
+participant System
+participant Agent
+Client->>WhatsApp: Inquiry
+WhatsApp->>CRM: Create/Update lead
+CRM->>AI: Request itinerary draft
+AI->>Doc: Generate itinerary
+System->>Client: Email itinerary
+Agent->>Doc: Review and finalize`,
+        useCase: `flowchart TB
+TA[Travel Agent] --> UC1((Capture leads))
+TA --> UC2((Generate itineraries))
+TA --> UC3((Send proposals))
+TA --> UC4((Track pipeline))
+CL[Client] --> UC5((Submit inquiry))
+CL --> UC6((Receive itinerary))
+CL --> UC7((Book trip))
+CL --> UC8((Leave review))`
+      },
+      {
+        title: "Real Estate Follow-ups",
+        short: "Automated inquiry response, viewing scheduling, and nurture sequences.",
+        playbook: "02-real-estate.md",
+        manual: "02-real-estate-manual.md",
+        description: "Ensure every property lead gets a rapid response, scheduled viewing, and drip follow-up through offer and closing stages.",
+        price: "$35",
+        tools: "Website forms, CRM, email automation, calendar workflows",
+        covers: ["Track leads", "Schedule viewings", "Send comparables", "Run nurture drips"],
+        flow: `flowchart TD
+A[Property inquiry] --> B[CRM capture]
+B --> C[Auto schedule viewing]
+C --> D[Follow-up drip emails]
+D --> E[Offer stage]
+E --> F[Closing]`,
+        sequence: `sequenceDiagram
+participant Buyer
+participant Website
+participant CRM
+participant Agent
+participant System
+Buyer->>Website: Submit inquiry
+Website->>CRM: Save lead
+CRM->>Agent: Lead notification
+Agent->>Buyer: Schedule viewing
+System->>Buyer: Drip emails`,
+        useCase: `flowchart TB
+AG[Agent] --> A1((Track leads))
+AG --> A2((Schedule viewings))
+AG --> A3((Send comparables))
+BY[Buyer] --> B1((Inquire))
+BY --> B2((View property))
+BY --> B3((Make offer))`
+      },
+      {
+        title: "Fitness Coach Onboarding",
+        short: "From signup to AI-assisted workout plans and weekly check-ins.",
+        playbook: "03-fitness-coach.md",
+        manual: "03-fitness-coach-manual.md",
+        description: "Automate intake, plan creation, delivery, and progress tracking so coaches spend more time coaching and less time on admin.",
+        price: "$29",
+        tools: "Intake forms, AI plan generation, coaching app assignment",
+        covers: ["Onboard clients", "Generate plans", "Track progress", "Weekly check-ins"],
+        flow: `flowchart TD
+A[Client signs up] --> B[Intake form]
+B --> C[AI generates workout plan]
+C --> D[Auto-assign in app]
+D --> E[Weekly check-in]
+E --> F[Progress tracking]`,
+        sequence: `sequenceDiagram
+participant Client
+participant Form
+participant System
+participant AI
+participant Plan as Workout Plan
+participant Coach
+Client->>Form: Fill intake
+Form->>System: Submit data
+System->>AI: Generate plan
+AI->>Plan: Return draft
+System->>Client: Deliver plan
+Coach->>Plan: Review`,
+        useCase: `flowchart TB
+CO[Coach] --> C1((Onboard clients))
+CO --> C2((Generate plans))
+CO --> C3((Track progress))
+CL[Client] --> U1((Fill intake))
+CL --> U2((Receive plan))
+CL --> U3((Log workouts))`
+      },
+      {
+        title: "Salon/Spa Booking",
+        short: "Booking confirmations, reminders, reviews, and rebooking automation.",
+        playbook: "04-salon-spa.md",
+        manual: "04-salon-spa-manual.md",
+        description: "Reduce no-shows and improve repeat bookings with automatic communication before and after each appointment.",
+        price: "$27",
+        tools: "Booking system, SMS/WhatsApp reminders, review automation",
+        covers: ["Manage bookings", "Send reminders", "Collect reviews", "Promote rebooking"],
+        flow: `flowchart TD
+A[Client books online] --> B[Confirmation SMS/WhatsApp]
+B --> C[Reminder 24h before]
+C --> D[Service]
+D --> E[Auto-request review]
+E --> F[Rebooking offer]`,
+        sequence: `sequenceDiagram
+participant Client
+participant Booking as Booking system
+participant System
+participant Staff
+Client->>Booking: Book appointment
+System->>Client: Confirmation
+System->>Client: Reminder
+Staff->>Client: Service
+System->>Client: Review request`,
+        useCase: `flowchart TB
+OW[Owner] --> O1((Manage bookings))
+OW --> O2((Send reminders))
+OW --> O3((Collect reviews))
+CL[Client] --> C1((Book appointment))
+CL --> C2((Receive reminders))
+CL --> C3((Leave review))`
+      },
+      {
+        title: "Restaurant Review Management",
+        short: "Automate review capture, sentiment routing, and owner alerts.",
+        playbook: "05-restaurant-reviews.md",
+        manual: "05-restaurant-reviews-manual.md",
+        description: "Capture feedback at scale, push positive sentiment publicly, and alert owners immediately for negative experiences.",
+        price: "$25",
+        tools: "QR prompts, AI sentiment, owner alerts, monthly reporting",
+        covers: ["Monitor reviews", "Respond fast", "Generate monthly reports"],
+        flow: `flowchart TD
+A[Diner visits] --> B[Receipt/QR review request]
+B --> C[AI categorizes sentiment]
+C --> D{Sentiment}
+D -->|Positive| E[Share publicly]
+D -->|Negative| F[Alert owner]
+E --> G[Monthly report]
+F --> G`,
+        sequence: `sequenceDiagram
+participant Diner
+participant System
+participant AI
+participant Owner
+Diner->>System: QR scan
+System->>Diner: Review prompt
+Diner->>System: Submit review
+AI->>System: Sentiment analysis
+System->>Owner: Alert/report`,
+        useCase: `flowchart TB
+OW[Owner] --> O1((Monitor reviews))
+OW --> O2((Respond to feedback))
+OW --> O3((Generate reports))
+DI[Diner] --> D1((Leave review))
+DI --> D2((Receive thank you))`
+      },
+      {
+        title: "E-commerce Returns",
+        short: "Streamlined returns with auto-classification, labels, refunds, and surveys.",
+        playbook: "06-ecommerce-returns.md",
+        manual: "06-ecommerce-returns-manual.md",
+        description: "Cut support load and improve customer trust with transparent automated returns from request to refund.",
+        price: "$33",
+        tools: "Return forms, classification logic, shipping labels, refund workflows",
+        covers: ["Process returns", "Track inventory impact", "Analyze return patterns"],
+        flow: `flowchart TD
+A[Customer requests return] --> B[Auto-classify reason]
+B --> C[Generate label]
+C --> D[Track shipment]
+D --> E[Process refund]
+E --> F[Feedback survey]`,
+        sequence: `sequenceDiagram
+participant Customer
+participant System
+participant Warehouse
+Customer->>System: Return form
+System->>System: Classification
+System->>Customer: Shipping label
+Warehouse->>System: Item received
+System->>Customer: Refund
+System->>Customer: Survey`,
+        useCase: `flowchart TB
+ST[Store] --> S1((Process returns))
+ST --> S2((Track inventory))
+ST --> S3((Analyze patterns))
+CU[Customer] --> C1((Request return))
+CU --> C2((Track status))
+CU --> C3((Get refund))`
+      },
+      {
+        title: "Wedding/Event Planner",
+        short: "Vendor matching, timeline generation, and event coordination automation.",
+        playbook: "07-wedding-event-planner.md",
+        manual: "07-wedding-event-planner-manual.md",
+        description: "Automate planning workflows from inquiry to day-of checklist so planners can deliver consistently under tight deadlines.",
+        price: "$37",
+        tools: "Budget forms, AI vendor matching, timeline/task system",
+        covers: ["Match vendors", "Build timelines", "Coordinate tasks"],
+        flow: `flowchart TD
+A[Inquiry] --> B[Budget questionnaire]
+B --> C[AI vendor matching]
+C --> D[Timeline generation]
+D --> E[Task assignments]
+E --> F[Day-of checklist]`,
+        sequence: `sequenceDiagram
+participant Couple
+participant System
+participant AI
+participant Planner
+Couple->>System: Inquiry form
+System->>System: Budget analysis
+AI->>Planner: Vendor matches
+Planner->>Couple: Proposal
+System->>Couple: Timeline
+System->>Planner: Vendor coordination`,
+        useCase: `flowchart TB
+PL[Planner] --> P1((Match vendors))
+PL --> P2((Generate timelines))
+PL --> P3((Coordinate tasks))
+CP[Couple] --> C1((Submit preferences))
+CP --> C2((Approve vendors))
+CP --> C3((Track progress))`
+      },
+      {
+        title: "Property Management",
+        short: "Maintenance request triage, contractor assignment, and tenant updates.",
+        playbook: "08-property-management.md",
+        manual: "08-property-management-manual.md",
+        description: "Automate property maintenance operations for faster issue resolution and better tenant communication.",
+        price: "$36",
+        tools: "Maintenance forms, AI categorization, contractor dispatch",
+        covers: ["Triage requests", "Assign contractors", "Track completion"],
+        flow: `flowchart TD
+A[Tenant reports issue] --> B[Auto-categorize issue]
+B --> C[Assign contractor]
+C --> D[Schedule repair]
+D --> E[Tenant notification]
+E --> F[Completion verification]`,
+        sequence: `sequenceDiagram
+participant Tenant
+participant AI
+participant System
+participant Contractor
+Tenant->>System: Maintenance form
+AI->>System: Categorize issue
+System->>Contractor: Assignment
+Contractor->>System: Schedule repair
+System->>Tenant: Status update
+Tenant->>System: Verify completion`,
+        useCase: `flowchart TB
+MG[Manager] --> M1((Triage requests))
+MG --> M2((Assign contractors))
+MG --> M3((Track completion))
+TN[Tenant] --> T1((Report issue))
+TN --> T2((Track status))
+TN --> T3((Confirm fix))`
+      },
+      {
+        title: "Tutoring Center",
+        short: "Inquiry-to-tutor matching with scheduling and parent progress updates.",
+        playbook: "09-tutoring-center.md",
+        manual: "09-tutoring-center-manual.md",
+        description: "Automate student onboarding, tutor allocation, and progress reporting to improve outcomes while reducing admin work.",
+        price: "$28",
+        tools: "Assessment forms, AI tutor matching, schedule/report automation",
+        covers: ["Match tutors", "Schedule sessions", "Send progress reports"],
+        flow: `flowchart TD
+A[Parent inquiry] --> B[Student assessment form]
+B --> C[AI matches tutor]
+C --> D[Schedule sessions]
+D --> E[Progress reports]
+E --> F[Re-enrollment]`,
+        sequence: `sequenceDiagram
+participant Parent
+participant System
+participant AI
+participant Tutor
+Parent->>System: Inquiry
+System->>Parent: Assessment form
+AI->>System: Tutor match
+System->>Tutor: Session schedule
+Tutor->>System: Session outcome
+System->>Parent: Progress report`,
+        useCase: `flowchart TB
+CT[Center] --> C1((Match tutors))
+CT --> C2((Schedule classes))
+CT --> C3((Send reports))
+PR[Parent] --> P1((Enroll child))
+PR --> P2((View progress))
+PR --> P3((Communicate with tutor))`
+      },
+      {
+        title: "Dental Clinic",
+        short: "Patient intake, reminders, post-care instructions, and recall automation.",
+        playbook: "10-dental-clinic.md",
+        manual: "10-dental-clinic-manual.md",
+        description: "Improve chair utilization and patient communication with automated workflows before and after each appointment.",
+        price: "$34",
+        tools: "Online booking, digital forms, AI post-care content, recall reminders",
+        covers: ["Manage appointments", "Send reminders", "Generate instructions"],
+        flow: `flowchart TD
+A[Patient books online] --> B[Intake forms pre-visit]
+B --> C[Appointment reminder]
+C --> D[Visit]
+D --> E[AI post-care instructions]
+E --> F[6-month recall reminder]`,
+        sequence: `sequenceDiagram
+participant Patient
+participant System
+participant Dentist
+participant AI
+Patient->>System: Online booking
+System->>Patient: Intake forms
+System->>Patient: Reminder
+Dentist->>Patient: Treatment
+AI->>System: Post-care instructions
+System->>Patient: Recall reminder`,
+        useCase: `flowchart TB
+CL[Clinic] --> C1((Manage appointments))
+CL --> C2((Send reminders))
+CL --> C3((Generate instructions))
+PT[Patient] --> P1((Book visit))
+PT --> P2((Fill forms))
+PT --> P3((Receive care instructions))`
+      },
+      {
+        featured: true,
+        title: "$3K Local AI Setup + Onboarding Bundle",
+        short: "Charge $3K for a 60-minute install (OpenClaw + Voiceflow + Zapier + Notion).",
+        playbook: "11-local-ai-setup.md",
+        manual: "11-local-ai-setup-manual.md",
+        description: "Deploy a private AI concierge that answers FAQs, books appointments, feeds staff SOPs, and kicks off onboarding automations for any local service business.",
+        price: "$3,000 one-time (plus $300+ retainer)",
+        tools: "OpenClaw, Voiceflow/Botpress, Notion AI, Zapier, Calendly/Google Calendar, Stripe/Square, WhatsApp/Twilio",
+        covers: ["Answer FAQs 24/7", "Handle bookings + deposits", "Spin up staff knowledge brain", "Log every enquiry to CRM", "Generate weekly social posts"],
+        flow: `flowchart TD
+A[Customer question via web/WhatsApp] --> B[Voiceflow/Botpress]
+B --> C[OpenClaw AI brain]
+C --> D{Intent}
+D -->|FAQ| E[Instant answer]
+D -->|Booking| F[Check Calendly/Google Calendar]
+F --> G[Confirm slot + payment]
+D -->|Complex| H[Escalate to human]
+G --> I[Zapier log + owner alert]
+E --> I`,
+        sequence: `sequenceDiagram
+participant Customer
+participant Chatbot
+participant OpenClaw as AI
+participant Calendar
+participant Zapier
+participant Owner
+Customer->>Chatbot: Ask question / request booking
+Chatbot->>AI: Send context + docs
+AI->>Chatbot: Response + intent tag
+Chatbot->>Calendar: Create booking (if needed)
+Calendar->>Customer: Confirmation email/SMS
+Zapier->>Owner: Summary + follow-up task
+AI->>Notion: Update knowledge (optional)`,
+        useCase: `flowchart TB
+SB[Small Business Owner] --> SB1((Automate FAQs))
+SB --> SB2((Book appointments))
+SB --> SB3((Get nightly summaries))
+Staff --> ST1((Search SOP answers))
+Staff --> ST2((Publish social prompts))
+Client --> CL1((Ask questions))
+Client --> CL2((Book anytime))`
+      }
+    ];
+
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menuToggle');
+    const productList = document.getElementById('productList');
+    const detail = document.getElementById('detail');
+
+    let selectedIndex = 0;
+
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'default',
+      securityLevel: 'loose',
+      flowchart: { curve: 'basis', useMaxWidth: true, htmlLabels: true, padding: 20 },
+      sequence: { useMaxWidth: true, width: 150, height: 65 },
+      themeVariables: { fontSize: '14px' }
+    });
+
+    function renderSidebar() {
+      productList.innerHTML = products.map((p, i) => `
+        <button class="product-btn ${i === selectedIndex ? 'active' : ''}" data-index="${i}" type="button">
+          <p class="product-title">${i + 1}. ${p.title}</p>
+          <p class="product-desc">${p.short}</p>
+          ${p.featured ? '<span class="featured-badge">Featured</span>' : ''}
+        </button>
+      `).join('');
+
+      [...productList.querySelectorAll('.product-btn')].forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectedIndex = Number(btn.dataset.index);
+          renderSidebar();
+          renderDetail();
+          if (window.innerWidth <= 900) sidebar.classList.remove('open');
+        });
+      });
+    }
+
+    function renderDetail() {
+      const p = products[selectedIndex];
+      detail.innerHTML = `
+        <h2>${selectedIndex + 1}. ${p.title} ${p.featured ? '⭐' : ''}</h2>
+        <p class="meta">${p.description}</p>
+
+        <div class="two-col">
+          <div class="panel">
+            <strong>Price</strong>
+            <p>${p.price}</p>
+          </div>
+          <div class="panel">
+            <strong>Core Stack</strong>
+            <p>${p.tools}</p>
+          </div>
+        </div>
+
+        <h3>What this playbook covers</h3>
+        <ul>${p.covers.map(item => `<li>${item}</li>`).join('')}</ul>
+
+        <div class="action-row">
+          <button class="playbook-btn" id="readPlaybookBtn" type="button">📖 Read Full Playbook</button>
+          <button class="playbook-btn" id="readManualBtn" type="button">📘 Read Full Manual</button>
+        </div>
+        <div id="playbookReader" class="playbook-reader" hidden></div>
+
+        <h3>Diagrams</h3>
+        <details>
+          <summary>Flow Diagram</summary>
+          <div class="diagram-wrap"><div class="mermaid">${p.flow}</div></div>
+        </details>
+
+        <details>
+          <summary>Sequence Diagram</summary>
+          <div class="diagram-wrap"><div class="mermaid">${p.sequence}</div></div>
+        </details>
+
+        <details>
+          <summary>Use Case Diagram (Actor-style flowchart)</summary>
+          <div class="diagram-wrap"><div class="mermaid">${p.useCase}</div></div>
+        </details>
+      `;
+
+      mermaid.run({ nodes: detail.querySelectorAll('.mermaid') });
+
+      const btn = document.getElementById('readPlaybookBtn');
+      const manualBtn = document.getElementById('readManualBtn');
+      const reader = document.getElementById('playbookReader');
+
+      btn.addEventListener('click', async () => {
+        const p = products[selectedIndex];
+        try {
+          btn.disabled = true;
+          btn.textContent = 'Loading playbook...';
+          const res = await fetch(`/playbooks/${p.playbook}`);
+          const md = await res.text();
+          reader.innerHTML = marked.parse(md);
+          reader.hidden = false;
+          btn.textContent = '📖 Read Full Playbook';
+        } catch (e) {
+          reader.hidden = false;
+          reader.innerHTML = '<p>Could not load playbook. Please try again.</p>';
+          btn.textContent = '📖 Read Full Playbook';
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
+      manualBtn.addEventListener('click', async () => {
+        const p = products[selectedIndex];
+        try {
+          manualBtn.disabled = true;
+          manualBtn.textContent = 'Loading manual...';
+          const res = await fetch(`/manuals/${p.manual}`);
+          const md = await res.text();
+          reader.innerHTML = marked.parse(md);
+          reader.hidden = false;
+          manualBtn.textContent = '📘 Read Full Manual';
+        } catch (e) {
+          reader.hidden = false;
+          reader.innerHTML = '<p>Could not load manual. Please try again.</p>';
+          manualBtn.textContent = '📘 Read Full Manual';
+        } finally {
+          manualBtn.disabled = false;
+        }
+      });
+    }
+
+    menuToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+
+    renderSidebar();
+    renderDetail();
+  </script>
+</body>
+</html>
